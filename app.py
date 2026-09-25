@@ -1,24 +1,33 @@
+import streamlit as st
 import pandas as pd
 import plotly.express as px
-import streamlit as st
-        
-car_data = pd.read_csv('vehicles_us.csv') # lendo os dados
-hist_button = st.button('Criar histograma') # criar um botão
-        
-if hist_button: # se o botão for clicado
-            # escrever uma mensagem
-            st.write('Criando um histograma para o conjunto de dados de anúncios de vendas de carros')
-            
-            # criar um histograma
-            fig = px.histogram(car_data, x="odometer")
-        
-            # exibir um gráfico Plotly interativo
-            st.plotly_chart(fig, use_container_width=True)
 
-import streamlit as st
+# Ler os dados
+car_data = pd.read_csv('vehicles_us.csv')
 
-# criar uma caixa de seleção
-build_histogram = st.checkbox('Criar um histograma')
+# Título do aplicativo
+st.header('Dashboard de anúncios de venda de carros')
 
-if build_histogram: # se a caixa de seleção for selecionada
-  st.write('Criando um histograma para a coluna odometer')
+# Botão para criar histograma
+hist_button = st.button('Criar histograma')
+
+if hist_button:
+    st.write('Histograma da quilometragem dos veículos')
+
+    fig = px.histogram(car_data, x='odometer')
+
+    st.plotly_chart(fig, use_container_width=True)
+
+# Botão para criar gráfico de dispersão
+scatter_button = st.button('Criar gráfico de dispersão')
+
+if scatter_button:
+    st.write('Relação entre preço e quilometragem')
+
+    fig = px.scatter(
+        car_data,
+        x='odometer',
+        y='price'
+    )
+
+    st.plotly_chart(fig, use_container_width=True) 
