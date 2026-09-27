@@ -9,7 +9,7 @@ car_data = pd.read_csv('vehicles.csv')
 st.header('Dashboard de anúncios de venda de carros')
 
 # Botão para criar histograma
-hist_button = st.button('Criar histograma')
+hist_button = st.checkbox('Criar histograma')
 
 if hist_button:
     st.write('Histograma da quilometragem dos veículos')
@@ -19,7 +19,7 @@ if hist_button:
     st.plotly_chart(fig, use_container_width=True)
 
 # Botão para criar gráfico de dispersão
-scatter_button = st.button('Criar gráfico de dispersão')
+scatter_button = st.checkbox('Criar gráfico de dispersão')
 
 if scatter_button:
     st.write('Relação entre preço e quilometragem')
